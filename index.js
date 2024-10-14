@@ -10,7 +10,7 @@ app.use(express.static('dist'))
 const cors = require('cors')
 app.use(cors())
 
-app.use(requestLogger);
+// app.use(requestLogger);
 
 app.get('/', (req, res) => {
     res.json('<h1>Hello World</h1>')

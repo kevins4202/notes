@@ -3,13 +3,13 @@ const notesRouter = require('express').Router()
 const Note = require('../models/note')
 // app.use(requestLogger);
 
-app.get('/', (req, res) => {
+notesRouter.get('/', (req, res) => {
   Note.find({}).then(notes => {
     response.json(notes)
   })
 })
 
-app.get('/:id', (req, res, next) => {
+notesRouter.get('/:id', (req, res, next) => {
   Note.findById(req.params.id).then(note => {
     if (note) {
       res.json(note)
@@ -20,7 +20,7 @@ app.get('/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-app.post('/', (req, res, next) => {
+notesRouter.post('/', (req, res, next) => {
   const body = req.body
 
   const note = new Note({
@@ -34,7 +34,7 @@ app.post('/', (req, res, next) => {
     .catch(error => next(error))
 })
 
-app.delete('/:id', (req, res, next) => {
+notesRouter.delete('/:id', (req, res, next) => {
   Note.findByIdAndRemove(req.params.id).then(result => {
     res.status(204).end
   })
@@ -46,7 +46,7 @@ app.delete('/:id', (req, res, next) => {
   // res.status(204).end()
 })
 
-app.put('/:id', (req, res, next) => {
+notesRouter.put('/:id', (req, res, next) => {
   const body = req.body
 
   const note = {
